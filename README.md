@@ -62,6 +62,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 ### Step 3: Run the backend.
 
+- Go to the `backend` folder.
 - Run the backend application. It will automatically create the required tables. Go to the backend folder and run ```./mvnw clean spring-boot:run```
 
 ### Step 4: Run the frontend
