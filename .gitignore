@@ -1,0 +1,66 @@
+# Created by https://www.toptal.com/developers/gitignore/api/java,maven,spring-boot
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,maven,spring-boot
+# Adjusted for project in 'backend/' subdirectory
+
+### Java ###
+# Compiled class file
+backend/**/*.class
+
+# Log file
+backend/**/*.log
+
+# BlueJ files
+backend/**/*.ctxt
+
+# Mobile Tools for Java (J2ME)
+backend/.mtj.tmp/
+
+# Package Files #
+backend/**/*.jar
+backend/**/*.war
+backend/**/*.nar
+backend/**/*.ear
+backend/**/*.zip
+backend/**/*.tar.gz
+backend/**/*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+backend/**/hs_err_pid*
+backend/**/replay_pid*
+
+### Maven ###
+backend/target/
+backend/pom.xml.tag
+backend/pom.xml.releaseBackup
+backend/pom.xml.versionsBackup
+backend/pom.xml.next
+backend/release.properties
+backend/dependency-reduced-pom.xml
+backend/buildNumber.properties
+backend/.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse m2e generated files
+# Eclipse Core
+backend/.project
+# JDT-specific (Eclipse Java Development Tools)
+backend/.classpath
+
+### Spring-Boot ###
+!backend/**/src/main/**/application*.properties
+!backend/**/src/main/**/application*.yaml
+!backend/**/src/main/**/application*.yml
+!backend/**/src/test/**/application*.properties
+!backend/**/src/test/**/application*.yaml
+!backend/**/src/test/**/application*.yml
+
+# STS (Spring Tool Suite)
+backend/.springBeans
+
+# Code Recommenders
+backend/.recommenders/
+
+# Annotation Processing
+backend/.apt_generated/
+backend/.sts4-cache/
