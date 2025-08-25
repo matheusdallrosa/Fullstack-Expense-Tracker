@@ -36,22 +36,33 @@ git clone https://github.com/<your-username>/Fullstack-Expense-Tracker
 
 ### Step 2: Setting up e-mail and database configurations
 
-- Configure the following credentials in the [`application.properties`](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/main/backend/src/main/resources/application.properties) file.
-
+- Run a local container to mock email calls. Use the following command to run the mail server in a docker container:
+  ```docker run -d --name mailhog -p 1025:1025 -p 8025:8025 mailhog/mailhog```
+- Credentials to call the mail server:
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/YOUR_DATABASE_NAME
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
-
+spring.mail.host=localhost
+spring.mail.port=1025
 spring.mail.username=YOUR_USERNAME
-spring.mail.password=YOUR_PASSWORD
+spring.mail.password=
+spring.mail.properties.mail.smtp.auth=false
+spring.mail.properties.mail.smtp.starttls.enable=false
+```
+- After starting the container you can go to ```http://localhost:8025``` to access the emails sent by the application.
+
+- The application uses mysql as a database. Use the following command to run the mysql server in a docker container:
+  ```docker run -d -p 3306:3306 --name mysql-student -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=expensetracker mysql:latest```
+- The properties that the application uses to call the mysql database:
+```properties
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/expensetracker
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
 
 ### Step 3: Run the backend.
 
-- Run the backend application. It will automatically create the required tables. 
-- Add some custom data manually in the [categories](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/7ecea71aaeca4e26a4aafd02fd602abe4d9da67d/backend/src/main/java/com/fullStack/expenseTracker/models/Category.java#L13) table for both [type](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/7ecea71aaeca4e26a4aafd02fd602abe4d9da67d/backend/src/main/java/com/fullStack/expenseTracker/models/TransactionType.java#L13) `expense` and `income`.
-- To start as admin, Insert a new user manually with role admin in [`users`](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/7ecea71aaeca4e26a4aafd02fd602abe4d9da67d/backend/src/main/java/com/fullStack/expenseTracker/models/User.java#L20) table.
+- Run the backend application. It will automatically create the required tables. Go to the backend folder and run ```./mvnw clean spring-boot:run```
 
 ### Step 4: Run the frontend
 
@@ -72,6 +83,13 @@ npm start
 
 Access the application at [`http://localhost:3000/`](http://localhost:3000/).
 To get started create a new account using your email.
+
+### Step 5: User configuration
+- Once the application is up and running go to ```http://localhost:3000/auth/register``` and register a new user.
+- Go to ```http://localhost:8025```, find the email with the verification code, and verify the newly registered user.
+- Let's make the user you just added an admin. Go to the database and in the table user_roles make the role_id of user equals to 2. This will make it an admin.
+- Login as the recently registered user and create a few categories.
+- Now you can create a non-admin user and register new transactions.
 
 ## Screenshots
 
